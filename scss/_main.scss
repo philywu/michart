@@ -1,0 +1,50 @@
+#page-main {
+    height:90vh;
+    overflow-y:auto;
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+
+        .dash-chart-card {
+            width: 25rem;
+            height: 20rem;
+            margin: 1rem;
+            padding: 0 0 2rem 0;
+
+            .card-header {
+                padding: 0rem;
+                text-align: center;
+                font-weight: bold;
+                height: 2rem;
+                line-height: 2rem;
+            }
+        }
+    }
+    .number-card-container {        
+        .number-card-group{
+            display: flex;
+            flex-direction: row;
+            
+            .dash-number-card {
+                border:0;    
+                width: 7rem;
+                height: 5rem;
+                margin: 0;
+                .header {
+                    padding: 0rem;
+                    text-align: center;
+                    border: solid 1px $black;
+                    background: $gray-200;
+                }
+                .body {
+                    padding:0.5rem;
+                    border: solid 1px $black;
+                    text-align: center;
+                    
+                    
+                }
+            }
+        }
+    }
+    
+}

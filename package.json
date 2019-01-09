@@ -5,6 +5,8 @@
   "main": "index.html",
   "dependencies": {},
   "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
     "bootstrap-sass": "^3.4.0",
     "browser-sync": "^2.26.3",
     "gulp": "^4.0.0",

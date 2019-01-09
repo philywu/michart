@@ -1,10 +1,10 @@
- export default {
+export default {
     "version":"1.0",
     "pages":{
-        "template_main":{            
-            "controller":"TemplateMainController",
+        "dashboard":{            
+            "controller":"DashboardController",
             "header":{
-                "title": "Template",
+                "title": "Dashboard",
                 "isHome":true,
                 "isBack":false
                 
@@ -15,10 +15,10 @@
 
             }
         },
-        "notif_main":{            
-            "controller":"NotificationMainController",
+        "chart_test":{            
+            "controller":"ChartTestController",
             "header":{
-                "title": "Notification",
+                "title": "Test Chart",
                 "isHome":false,
                 "isBack":true
                 
@@ -28,7 +28,7 @@
             "bottom":{
 
             }
-        }                      
-
+        }
+       
     }
 }
