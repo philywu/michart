@@ -4,6 +4,7 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const devMode = process.env.NODE_ENV !== 'production'
+const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const webpack = require('webpack');
 
@@ -26,6 +27,13 @@ module.exports = {
     module: {
         
         rules: [     
+          {
+            test: /\.js$/,
+            exclude: /node_modules/,
+            use: {
+              loader: "babel-loader"
+            }
+          },
           {
             test: /\.(css|s[ac]ss)$/,
             use: [
@@ -134,6 +142,12 @@ module.exports = {
             }
             }
           ]),
+          new WorkboxPlugin.GenerateSW({
+            // these options encourage the ServiceWorkers to get in there fast 
+            // and not allow any straggling "old" SWs to hang around
+            clientsClaim: true,
+            skipWaiting: true
+     }),
         new webpack.HotModuleReplacementPlugin(),
     ]
 };
