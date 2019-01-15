@@ -1,9 +1,9 @@
-import GLOBAL from '../scripts/constants.mjs';
-import DATA from "../util/data.mjs";
+import GLOBAL from '../scripts/constants.js';
+import DATA from "../util/data.js";
 import {
     BaseController
-} from "./BaseController.mjs";
-
+} from "./BaseController.js";
+import * as c3 from 'c3';
 
 class DashboardController extends BaseController {
     constructor(args) {

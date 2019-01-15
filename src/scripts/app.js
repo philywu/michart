@@ -1,11 +1,11 @@
+import 'bootstrap';
+import '../scss/custom.scss';
 import {
     Page
 } from "./page.js";
 import GLOBAL from "./constants.js";
 
-import {
-    I18n
-} from "./i18n.js"; {
+{
     /*
     app: global vairable of app page
     */
