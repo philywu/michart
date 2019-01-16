@@ -1,10 +1,10 @@
-import "@babel/polyfill";
+import '@babel/polyfill';
 import 'bootstrap';
 import '../scss/custom.scss';
 import {
     Page
-} from "./page.js";
-import GLOBAL from "./constants.js";
+} from './page.js';
+import GLOBAL from './constants.js';
 
 {
     /*
@@ -18,11 +18,11 @@ import GLOBAL from "./constants.js";
         window.addEventListener('load', function () {
             navigator.serviceWorker.register('/service-worker.js').then(function (registration) {
                 // Registration was successful
-                console.log('ServiceWorker registration successful with scope: ', registration.scope);
+             //   console.log('ServiceWorker registration successful with scope: ', registration.scope);
                 app.swRegistration = registration;
             }, function (err) {
                 // registration failed :(
-                console.log('ServiceWorker registration failed: ', err);
+              //  console.log('ServiceWorker registration failed: ', err);
             });
         });
     }
@@ -35,11 +35,10 @@ import GLOBAL from "./constants.js";
         app.page.load(pageName).then(pageConfig => {
             if (pageConfig) {
                 app.render(pageConfig);
-               // app.render(pageConfig,{"i18n":{locale: 'fr-CA', defaultCurrency: 'CAD', messageBundleName: "messageBundle_fr"}});
+               // app.render(pageConfig,{'i18n':{locale: 'fr-CA', defaultCurrency: 'CAD', messageBundleName: 'messageBundle_fr'}});
             }
         });
-      
-    }
+    };
 
     /**
      * route to page with page name, and add hisotry stack.
@@ -51,19 +50,19 @@ import GLOBAL from "./constants.js";
         app.page.load(pageName).then(pageConfig => {
             if (pageConfig) {
                 app.render(pageConfig,param);
-               // app.render(pageConfig,{"i18n":{locale: 'fr-CA', defaultCurrency: 'CAD', messageBundleName: "messageBundle_fr"}});
+               // app.render(pageConfig,{'i18n':{locale: 'fr-CA', defaultCurrency: 'CAD', messageBundleName: 'messageBundle_fr'}});
             }
         });
  
-    }
+    };
     /**
      * rerender the same page
      */
     app.reRender = function (param) {
         //set current page 
         //header
-        app.render(app.page.currentPageConfig, param)
-    }
+        app.render(app.page.currentPageConfig, param);
+    };
     /**
      * render page by using config
      */
@@ -74,51 +73,49 @@ import GLOBAL from "./constants.js";
             app.renderHeader(config.header);
             app.renderMain(config, param);
         }
-    }
+    };
     /**
      * render header of page by using config
      */
     app.renderHeader = function (headerConfig) {
-        let header = document.getElementById("pageHeader");
-        let title = header.getElementsByTagName("h4")[0];
+        let header = document.getElementById('pageHeader');
+        let title = header.getElementsByTagName('h4')[0];
         title.innerHTML = headerConfig.title;
-        let headerLeft = document.getElementById("headerLeft");
+        let headerLeft = document.getElementById('headerLeft');
         let leftIcon;
         if (headerConfig.isHome) {
-            leftIcon = "fa-home";
+            leftIcon = 'fa-home';
         }
         if (headerConfig.isBack) {
-            leftIcon = "fa-chevron-left";
-            headerLeft.addEventListener("click", app.back);
+            leftIcon = 'fa-chevron-left';
+            headerLeft.addEventListener('click', app.back);
         }
-        headerLeft.innerHTML = `<i class="fas ${leftIcon} pl-1 pr-1"></i>`;
+        headerLeft.innerHTML = `<i class='fas ${leftIcon} pl-1 pr-1'></i>`;
 
-    }
+    };
     /**
      * render main page by using config
      */
     app.renderMain = async function (config, param) {
-        let mainDiv = document.getElementsByClassName("main")[0];
+        let mainDiv = document.getElementsByClassName('main')[0];
         let html = await this.page.getFragmentFile(config.viewName);
         mainDiv.innerHTML = html;
-        if (param && param.i18n) {
-            let i18n = I18n.use(param.i18n);
-            let loaded = await i18n.loadMessageBuldle();
-            app.translateLocale(mainDiv, i18n)
-        }
+       
 
 
         app.setupController(config, param);
-    }
+    };
     app.translateLocale = function (div, i18n) {
         let regex = /^\s*$/; //check if this is a blank line
-        let n, textNodeArray = [],
+        let textNodeArray = [],
             walk = document.createTreeWalker(div, NodeFilter.SHOW_TEXT, null, false);
-        while (n = walk.nextNode()) {
+        let n = walk.nextNode();
+        while (n ) {
             if (!n.nodeValue.match(regex)) {
                 // console.log(n.nodeValue);
                 textNodeArray.push(n);
             }
+            n= walk.nextNode();
         }
         for (let node of textNodeArray) {
             if (node.nodeValue) {
@@ -136,7 +133,7 @@ import GLOBAL from "./constants.js";
         }
 
         return textNodeArray;
-    }
+    };
     /**
      * call controller initial
      */
@@ -144,16 +141,16 @@ import GLOBAL from "./constants.js";
         if (config.controllerInstance) {
             config.controllerInstance.init(app, param);
         }
-    }
+    };
     /**
      * do history back action
      */
     app.back = function (e) {
-        console.log("back");
+       // console.log('back');
         let pageConfig = app.page.historyPop();
         app.page.currentPageConfig = pageConfig;
         app.render(pageConfig);
-    }
+    };
 
     // initial the app, main entry of app.
     app.init();

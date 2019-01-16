@@ -1,34 +1,34 @@
 export default {
-    "version":"1.0",
-    "pages":{
-        "dashboard":{            
-            "controller":"DashboardController",
-            "header":{
-                "title": "Dashboard",
-                "isHome":true,
-                "isBack":false
+    'version':'1.0',
+    'pages':{
+        'dashboard':{            
+            'controller':'DashboardController',
+            'header':{
+                'title': 'Dashboard',
+                'isHome':true,
+                'isBack':false
                 
             },
-            "main":{             
+            'main':{             
             },
-            "bottom":{
+            'bottom':{
 
             }
         },
-        "chart_test":{            
-            "controller":"ChartTestController",
-            "header":{
-                "title": "Test Chart",
-                "isHome":false,
-                "isBack":true
+        'chart_test':{            
+            'controller':'ChartTestController',
+            'header':{
+                'title': 'Test Chart',
+                'isHome':false,
+                'isBack':true
                 
             },
-            "main":{             
+            'main':{             
             },
-            "bottom":{
+            'bottom':{
 
             }
         }
        
     }
-}
+};

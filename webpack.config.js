@@ -2,8 +2,8 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const devMode = process.env.NODE_ENV !== 'production'
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const devMode = process.env.NODE_ENV !== 'production';
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
 const webpack = require('webpack');
@@ -30,9 +30,13 @@ module.exports = {
           {
             test: /\.js$/,
             exclude: /node_modules/,
-            use: {
-              loader: "babel-loader"
-            }
+            use: [{
+              loader: 'babel-loader'
+              },
+              {
+                loader: 'eslint-loader'
+                }
+          ]
           },
           {
             test: /\.(css|s[ac]ss)$/,
@@ -97,24 +101,24 @@ module.exports = {
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             title: 'MI Webpack',
-            template:"src/index.html",
+            template:'src/index.html',
             inject: true,
             chunks:['index'],
         }),
         new HtmlWebpackPlugin({  // Also generate a test.html
             inject: false,
             filename: 'app.html',
-            template:"src/app.html",
+            template:'src/app.html',
             title: 'MI App',
             mViewPort: `width=device-width, initial-scale=1.0`,
              chunks:['app'],
-            "files": {
-                "css": [ "custom.css" ],
-                "js": ["index","app"],
-                "chunks": {                                      
-                  "main": {
-                    "entry": "app",
-                    "css": "css"
+            'files': {
+                'css': [ 'custom.css' ],
+                'js': ['index','app'],
+                'chunks': {                                      
+                  'main': {
+                    'entry': 'app',
+                    'css': 'css'
                   },
                 }
               }
@@ -144,7 +148,7 @@ module.exports = {
           ]),
           new WorkboxPlugin.GenerateSW({
             // these options encourage the ServiceWorkers to get in there fast 
-            // and not allow any straggling "old" SWs to hang around
+            // and not allow any straggling 'old' SWs to hang around
             clientsClaim: true,
             skipWaiting: true
      }),

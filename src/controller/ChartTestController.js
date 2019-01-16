@@ -1,5 +1,5 @@
 import GLOBAL from '../scripts/constants.js';
-import {BaseController} from "./BaseController.js";
+import {BaseController} from './BaseController.js';
 import * as c3 from 'c3';
 class ChartTestController extends BaseController {
     constructor(args) {
@@ -8,7 +8,6 @@ class ChartTestController extends BaseController {
     }
     //init happend only when bind to page
     init(app) {
-        console.log("dashboard");
         super.init(app);
         this.registerEvent();
 
@@ -26,12 +25,12 @@ class ChartTestController extends BaseController {
         // });
 
         let jsonData = [
-            {"brand":"Miwaukee","complete":50,"avgTime":5.4},
-            {"brand":"AEG","complete":22,"avgTime":4.2},
-            {"brand":"Makita","complete":15,"avgTime":4.9},
-            {"brand":"Dewalt","complete":12,"avgTime":6.1},
-            {"brand":"Paslode","complete":12,"avgTime":5.2},
-            {"brand":"Other","complete":16,"avgTime":6.5},
+            {'brand':'Miwaukee','complete':50,'avgTime':5.4},
+            {'brand':'AEG','complete':22,'avgTime':4.2},
+            {'brand':'Makita','complete':15,'avgTime':4.9},
+            {'brand':'Dewalt','complete':12,'avgTime':6.1},
+            {'brand':'Paslode','complete':12,'avgTime':5.2},
+            {'brand':'Other','complete':16,'avgTime':6.5},
         ];
 
         
