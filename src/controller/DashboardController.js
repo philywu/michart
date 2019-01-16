@@ -7,12 +7,15 @@ import {
     BaseController
 } from './BaseController.js';
 import * as c3 from 'c3';
+import {
+    DashChart 
+} from '../component/DashChart.js';
 
 class DashboardController extends BaseController {
     constructor(args) {
-        super(args);
+       super(args);
 
-    }
+    } 
     //init happend only when bind to page
     genCard(card, container, chartOption) {
         let template = document.getElementById('dash-chart-card-template');
@@ -175,8 +178,11 @@ class DashboardController extends BaseController {
          chartData.keys.x = 'difficulty';
          chartData.keys.value = ['total'];
          this.genCard(cardInfo, chartContainer, chartOption);
-
-         
+         // dash chart
+         let dcContainer= document.querySelector('#dcc');
+         let dc1 = new DashChart();
+         dc1.loadData(['a','b']);
+         dc1.appendTo(dcContainer);
         
     }
 

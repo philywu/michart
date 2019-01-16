@@ -85,30 +85,7 @@ module.exports = {
         filename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
-    // optimization: {
-    //     splitChunks: {
-    //       cacheGroups: {
-    //         styles: {
-    //           name: 'styles',
-    //           test:  /\.(css|s[ac]ss)$/,
-    //           chunks: 'all',
-    //           enforce: true
-    //         }
-    //       }
-    //     }
-    //   },
-    // optimization: {
-    //        runtimeChunk: 'single',
-    //        splitChunks: {
-    //          cacheGroups: {
-    //            vendor: {
-    //              test: /[\\/]node_modules[\\/]/,
-    //              name: 'vendor',
-    //              chunks: 'all'
-    //            }
-    //          }
-    //        }
-    // },
+    
     plugins: [       
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
@@ -166,4 +143,4 @@ module.exports = {
      }),
         new webpack.HotModuleReplacementPlugin(),
     ]
-}
+  }
