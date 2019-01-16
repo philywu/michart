@@ -40,21 +40,16 @@ class DashboardController extends BaseController {
         }
 
     }
-    init(app) {
+    async init(app) {
         super.init(app);
         this.registerEvent();
-        const apiURL = 'api/data/brandList';
-        RemoteUtil.getJsonFromAPIServer(apiURL).then(json => {
-           // console.log(json);
-        });
+        
 
         let chartContainer = document.querySelector('#sec_ca_chart .card-container');
 
-        let jsonData = DATA[`brandList`];
-
+       
         let chartData = {
-            type: 'bar',
-            json: jsonData,
+            type: 'bar',            
             keys: {
                 x: 'brand',
                 value: ['complete']
@@ -82,31 +77,39 @@ class DashboardController extends BaseController {
                 }
             }
         };
-
-        //Chart of Count By Brand
         let cardInfo = {
             title: 'Count By Brand',
             chartId: 'chart_cbb',
-        };
+            };
 
-        this.genCard(cardInfo, chartContainer, chartOption);
+             //Chart of Count By Brand
+        let apiURL = 'api/data/brandList';
+        let json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+           // console.log(json);
+           chartData.json = json ; 
+          
+            this.genCard(cardInfo, chartContainer, chartOption);
 
-        //Chart of Av Turnaround by Brand     
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Av Turnaround by Brand',
-            chartId: 'chart_abb',
-        });
-        chartData.keys.value = ['avgTime'];
-        this.genCard(cardInfo, chartContainer, chartOption);
+            //Chart of Av Turnaround by Brand     
+            cardInfo = Object.assign(cardInfo, {
+                title: 'Av Turnaround by Brand',
+                chartId: 'chart_abb',
+            });
+            chartData.keys.value = ['avgTime'];
+            this.genCard(cardInfo, chartContainer, chartOption);
 
-        jsonData = DATA['jobTypeList'];
-
+        
+        apiURL = 'api/data/jobTypeList';
         //Chart of Count by Job Type
-        cardInfo = Object.assign(cardInfo, {
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+           // console.log(json);
+           chartData.json = json ; 
+          
+           cardInfo = Object.assign(cardInfo, {
             title: 'Count by Job Type',
             chartId: 'chart_cbj',
         });
-        chartData.json = jsonData;
+        chartData.json = json;
         chartData.keys.x = 'jobType';
         chartData.keys.value = ['complete'];
         this.genCard(cardInfo, chartContainer, chartOption);
@@ -120,50 +123,61 @@ class DashboardController extends BaseController {
         chartData.keys.value = ['avgTime'];
         this.genCard(cardInfo, chartContainer, chartOption);
 
-        jsonData = DATA['customerTypeList'];
 
-        //Chart of Count by Customer Type
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Count by Customer Type',
-            chartId: 'chart_cbc',
-        });
-        chartData.json = jsonData;
-        chartData.keys.x = 'customerType';
-        chartData.keys.value = ['complete'];
-        this.genCard(cardInfo, chartContainer, chartOption);
+       //Chart of Count by Customer Type
+       apiURL = 'api/data/customerTypeList';
+       json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+            // console.log(json);
+            cardInfo = Object.assign(cardInfo, {
+                title: 'Count by Customer Type',
+                chartId: 'chart_cbc',
+            });
+            chartData.json = json;
+            chartData.keys.x = 'customerType';
+            chartData.keys.value = ['complete'];
+            this.genCard(cardInfo, chartContainer, chartOption);
+    
+            //Av Turnaround by Customer Type
+            cardInfo = Object.assign(cardInfo, {
+                title: 'Av Turnaround by Customer Type',
+                chartId: 'chart_abc',
+            });
+    
+            chartData.keys.value = ['avgTime'];
+            this.genCard(cardInfo, chartContainer, chartOption);
+ 
+         apiURL = 'api/data/ageList';
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+            // console.log(json);
+            chartContainer = document.querySelector('#sec_age_chart .card-container');
+            //Chart of Count of Jobs by Age
+            cardInfo = Object.assign(cardInfo, {
+                title: 'Count by Age',
+                chartId: 'chart_coa',
+            });
+            chartData.json = json;
+            chartData.keys.x = 'age';
+            chartData.keys.value = ['total'];
+            this.genCard(cardInfo, chartContainer, chartOption);
+    
 
-        //Av Turnaround by Customer Type
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Av Turnaround by Customer Type',
-            chartId: 'chart_abc',
-        });
+         apiURL = 'api/data/difficultyList';
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+            // console.log(json);
+          chartContainer = document.querySelector('#sec_dif_chart .card-container');
+            
+         //Chart of Count of Jobs by Difficulty
+         cardInfo = Object.assign(cardInfo, {
+             title: 'Count by Difficulty',
+             chartId: 'chart_cod',
+         });
+         chartData.json = json;
+         chartData.keys.x = 'difficulty';
+         chartData.keys.value = ['total'];
+         this.genCard(cardInfo, chartContainer, chartOption);
 
-        chartData.keys.value = ['avgTime'];
-        this.genCard(cardInfo, chartContainer, chartOption);
-
-        chartContainer = document.querySelector('#sec_age_chart .card-container');
-        jsonData = DATA['ageList'];
-        //Chart of Count of Jobs by Age
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Count by Age',
-            chartId: 'chart_coa',
-        });
-        chartData.json = jsonData;
-        chartData.keys.x = 'age';
-        chartData.keys.value = ['total'];
-        this.genCard(cardInfo, chartContainer, chartOption);
-
-        chartContainer = document.querySelector('#sec_dif_chart .card-container');
-        jsonData = DATA['difficultyList'];
-        //Chart of Count of Jobs by Difficulty
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Count by Age',
-            chartId: 'chart_cod',
-        });
-        chartData.json = jsonData;
-        chartData.keys.x = 'difficulty';
-        chartData.keys.value = ['total'];
-        this.genCard(cardInfo, chartContainer, chartOption);
+         
+        
     }
 
 

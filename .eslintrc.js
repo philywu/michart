@@ -30,7 +30,7 @@ module.exports = {
         "semi": [
             "error", "always", { "omitLastInOneLineBlock": true }
         ],
-        "no-unused-vars": ["warn", {
+        "no-unused-vars": ["off", {
             "vars": "all",
             "args": "after-used",
             "ignoreRestSiblings": false
