@@ -179,7 +179,7 @@ class DashboardController extends BaseController {
          chartData.keys.value = ['total'];
          this.genCard(cardInfo, chartContainer, chartOption);
 
-         apiURL = 'api/data/ageJobs';
+         apiURL = 'api/data/ageJob';
          // dash chart
          json = await RemoteUtil.getJsonFromAPIServer(apiURL);
          let dcContainer= document.querySelector('#dcc');
