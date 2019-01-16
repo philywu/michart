@@ -178,10 +178,13 @@ class DashboardController extends BaseController {
          chartData.keys.x = 'difficulty';
          chartData.keys.value = ['total'];
          this.genCard(cardInfo, chartContainer, chartOption);
+
+         apiURL = 'api/data/ageJobs';
          // dash chart
+         json = await RemoteUtil.getJsonFromAPIServer(apiURL);
          let dcContainer= document.querySelector('#dcc');
          let dc1 = new DashChart();
-         dc1.loadData(['a','b']);
+         dc1.loadData(json,'age','received');
          dc1.appendTo(dcContainer);
         
     }

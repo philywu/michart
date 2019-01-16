@@ -82,5 +82,90 @@ module.exports = {
             "total": 23
         },
 
+    ],
+    "ageJob":{
+        "jobreceived7days":56,
+        "jobcompleted7days":2,
+        "jobreceived30days":120,
+        "jobcompleted30days":4,
+        "countbacklog":116,
+        "backlogvslast7days":54,
+        "backlogdays":870,
+    },
+    "ageJobs" :[
+        {
+            "age":"7 days",
+            "received":121,
+            "completed":127
+        },
+        {
+            "age":"30 days",
+            "received":463,
+            "completed":493
+        }
+    ],
+    "currentJobs":[
+        {
+            "category":"Backlog",
+            "count":114
+        },
+        {
+            "category":"vs 7 days ago",
+            "count":-12
+        },
+        {
+            "category":"Backlog days",
+            "count":5.4
+        },
+    ],
+    "statusTurnaround":[{
+            "status":"Asset Product",
+            "time": 0.4
+        },
+        {
+            "status":"Parts ? Claim",
+            "time": 0.2
+        },
+        {
+            "status":"Await Parts",
+            "time": 1.7
+        },
+        {
+            "status":"Complete Repair",
+            "time": 0.8
+        },
+        {
+            "status":"Deliver Product",
+            "time": 1.3
+        },
+        {
+            "status":"Total",
+            "time": 4.4
+        }
+    ],
+    "newCustomerList":[
+        {
+            "age":"7 days",
+            "direct":5,
+            "retailer":12
+        },
+        {
+            "age":"30 days",
+            "direct":26,
+            "retailer":57
+        },
+    ],
+    "returCustomerList":[
+        
+        {
+            "type":"Direct",
+            "age":"30 days",
+            "count":12
+        },
+        {
+            "type":"Retailer",
+            "age":"30 days",
+            "count":17
+        },
     ]
 }

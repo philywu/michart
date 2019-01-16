@@ -5,18 +5,24 @@ class DashChart extends ChartComponent{
    
     constructor(args) {
         super(args);
- 
+        this.dataSet = [];
      } 
-    loadData(json){
-        this.json = json ; 
+    loadData(list,headerName,contentName){
+        if (list && list.length>0){
+            this.dataSet = list.map(item =>{
+                let data = {
+                    header:item[headerName],
+                    content:item[contentName]
+                };
+                return data; 
+            });
+        } 
     }
     appendTo(container){
         let html = '';
-        for (let item of this.json){
-            let data = {};
-            data.header = `test1`;
-            data.content = `test2`;
-             html += this._render(data);
+        for (let item of this.dataSet){
+           
+             html += this._render(item);
         }
         container.innerHTML += html ;
     }

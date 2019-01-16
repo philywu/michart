@@ -35,7 +35,8 @@ module.exports = {
             "args": "after-used",
             "ignoreRestSiblings": false
         }],
-        "no-cond-assign": [ "error", "except-parens" ]
+        "no-cond-assign": [ "error", "except-parens" ],
+        "linebreak-style" :["off"]
 
     }
 };
