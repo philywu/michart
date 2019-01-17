@@ -92,6 +92,22 @@ module.exports = {
         "backlogvslast7days":54,
         "backlogdays":870,
     },
+    "customerCount":{
+        "newdirect7days":5,
+        "newdirect30days":26,
+        "newretailer7days":12,
+        "newretailer30days":57,
+        "returndirect30days":12,
+        "returnretailer30days":17,
+    },
+    "avTATByAction":{
+        "assessProduct":0.4,
+        "partsClaim":0.2,
+        "awaitingParts":1.7,
+        "completeRepair":0.8,
+        "deliveryProduct": 1.3,
+        "total":4.4
+    },
     "ageJobs" :[
         {
             "age":"7 days",

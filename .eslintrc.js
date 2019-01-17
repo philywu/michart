@@ -36,7 +36,8 @@ module.exports = {
             "ignoreRestSiblings": false
         }],
         "no-cond-assign": [ "error", "except-parens" ],
-        "linebreak-style" :["off"]
+        "linebreak-style" :["off"],
+        "no-console":"off"
 
     }
 };
