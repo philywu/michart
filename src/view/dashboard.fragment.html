@@ -10,38 +10,43 @@
     </div>
   </template>
   <div class="container">
-      <div class="row mb-3">
-          <div class="col-sm-4" id="dc_jr">           
-            </div>
-            <div class="col-sm-4" id="dc_jc">           
-            </div>
-            <div class="col-sm-4" id="dc_cj">           
-            </div>
-      </div>    
-    <div id="sec_ca_chart" class="row">
-      <h5>Completed Job Performance 7 Days</h5><br>
-      <div class="card-container">
-      </div>
+
+    <div class="row mb-3">
+      <div id="dc_job" class="col d-flex flex-row justify-content-between flex-wrap"></div>
     </div>
+
     <div class="row">
-      <div class="col-sm-6" id="sec_age_chart" ">    
-          <h5>Current Jobs by Age</h5><br>
-          <div class="card-container">
+      <div class="col">
+        <h5> Completed Job Performance 7 Days</h5><br>
+        <div class="card-container" id="gc_bar" ">   
+          </div>
       </div>
+      </div>
+  
+    <div class="row">
+          <div class="col d-flex flex-row flex-wrap">
+            <div>
+              <h5>Current Jobs by Age</h5>
+              <div class="card-container" id="sec_age_chart">
+              </div>
+            </div>
+            <div>
+              <h5>Current Jobs by Difficulty</h5>
+              <div class="card-container" id="sec_dif_chart">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div class="col" id="dc_action">
+
+          </div>
+        </div>
+        <div class="row mb-3">
+          <div id="dc_customer" class="col d-flex flex-row justify-content-between flex-wrap"></div>
+        </div>
+      </div>
+
+      <button id="toTest" class="btn btn-primary fix-bottom d-none">Test</button>
+
     </div>
-    <div class="col-sm-6" id="sec_dif_chart">    
-            <h5>Current Jobs by Difficulty</h5><br>
-            <div class=" card-container">
-    </div>
-  </div>
-</div>
-<div class="row">
-  <div class="col" id="dc_action">
-
-  </div>
-</div>
-</div>
-
-<button id="toTest" class="btn btn-primary fix-bottom d-none">Test</button>
-
-</div>

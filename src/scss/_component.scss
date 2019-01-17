@@ -1,17 +1,30 @@
+.graph-chart-card {
+    width: 25rem;
+    height: 20rem;
+    margin: 1rem;
+    padding: 0 0 2rem 0;
+
+    .card-header {
+        padding: 0rem;
+        text-align: center;
+        font-weight: bold;
+        height: 2rem;
+        line-height: 2rem;
+    }
+}
 .number-card-container {      
     .number-card-title {
         font-weight: bold;
         font-size: 1.2rem;
-    }  
+    }      
     .number-card-group{
         display: flex;
-        flex-direction: row;
-       
+        flex-direction: row;        
         .dash-number-card {
             border:0;    
             width: 7rem;
             height: 5rem;
-            margin: 0;
+            margin: 1rem 0;
             .header {
                 padding: 0rem;
                 text-align: center;
@@ -26,5 +39,10 @@
                 
             }
         }
+    }
+    .number-card-space {
+        display: flex;
+        justify-content:space-between;
+        flex-wrap:wrap;
     }
 }

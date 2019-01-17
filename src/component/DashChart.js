@@ -10,21 +10,22 @@ class DashChart extends ChartComponent{
        if (args){
            this.title = args.title;
            this.dataType = args.dataType;
+           this.space = args.space ;
            this.fields = args.fields;
            
        }
      } 
-    loadData(list,headerName,contentName){
-        if (list && list.length>0){
-            this.dataSet = list.map(item =>{
-                let data = {
-                    header:item[headerName],
-                    content:item[contentName]
-                };
-                return data; 
-            });
-        } 
-    }
+    // loadData(list,headerName,contentName){
+    //     if (list && list.length>0){
+    //         this.dataSet = list.map(item =>{
+    //             let data = {
+    //                 header:item[headerName],
+    //                 content:item[contentName]
+    //             };
+    //             return data; 
+    //         });
+    //     } 
+    // }
     loadJson (json){
         if (this.fields){
             this.dataSet = this.fields.map(item =>{
@@ -35,7 +36,10 @@ class DashChart extends ChartComponent{
             });
         }
     }
-    build(json){
+    build(container,json,isIntial){
+        if (isIntial){
+            container.innerHTML = '';
+        }
         if (json){
             this.loadJson(json);
         } 
@@ -45,14 +49,15 @@ class DashChart extends ChartComponent{
         for (let item of this.dataSet){
             itemDiv.appendChild(this._genItem(item));
         }
-        return this.component;
+        container.appendChild(this.component);
+        //return this.component;
     }
     
     _genComponent(){
         return this.buildComponentFragment(
-             `<div id="sec_job_receive" class="number-card-container">
+             `<div class="number-card-container">
           <div class="number-card-title">${this.title}</div>
-          <div class="number-card-group"></div></div>`
+          <div class="number-card-group ${this.space?'number-card-space':''}"></div></div>`
         );
         
           

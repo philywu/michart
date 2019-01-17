@@ -10,7 +10,9 @@ import * as c3 from 'c3';
 import {
     DashChart
 } from '../component/DashChart.js';
-
+import {
+    BarChart
+} from '../component/BarChart.js';
 class DashboardController extends BaseController {
     constructor(args) {
         super(args);
@@ -47,145 +49,91 @@ class DashboardController extends BaseController {
         super.init(app);
         this.registerEvent();
 
-
-        let chartContainer = document.querySelector('#sec_ca_chart .card-container');
-
-
-        let chartData = {
-            type: 'bar',
-            keys: {
-                x: 'brand',
-                value: ['complete']
-            },
-            labels: true
-        };
-
-        let chartOption = {
-
-            data: chartData,
-            legend: {
-                show: false
-            },
-            bar: {
-                width: {
-                    ratio: 0.4
-                }
-            },
-            axis: {
-                x: {
-                    type: 'category'
-                },
-                y: {
-                    show: false
-                }
-            }
-        };
-        let cardInfo = {
-            title: 'Count By Brand',
-            chartId: 'chart_cbb',
-        };
-
         //Chart of Count By Brand
         let apiURL = 'api/data/brandList';
         let json = await RemoteUtil.getJsonFromAPIServer(apiURL);
         // console.log(json);
-        chartData.json = json;
+       
 
-        this.genCard(cardInfo, chartContainer, chartOption);
-
-        //Chart of Av Turnaround by Brand     
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Av Turnaround by Brand',
-            chartId: 'chart_abb',
+        let gcBar = document.querySelector('#gc_bar');
+        let chartBar = new BarChart({
+            'dataType': 'json',
+            'title': 'Count By Brand',
+            'chartId':'c_cbb',
+            'x':'brand',
+            'y':['complete']
         });
-        chartData.keys.value = ['avgTime'];
-        this.genCard(cardInfo, chartContainer, chartOption);
+       
+        chartBar.build(gcBar,json,true);      
 
+        
+        chartBar.title =  'Av Turnaround by Brand';
+        chartBar.chartId = 'c_abb';
+        chartBar.y = ['avgTime'];
+        chartBar.build(gcBar,json);     
 
         apiURL = 'api/data/jobTypeList';
         //Chart of Count by Job Type
         json = await RemoteUtil.getJsonFromAPIServer(apiURL);
-        // console.log(json);
-        chartData.json = json;
+      
+      //job type chart    
+        chartBar.title =  'Count by Job Type';
+        chartBar.chartId = 'c_cbj';
+        chartBar.x = 'jobType';
+        chartBar.y = ['complete'];
+        chartBar.build(gcBar,json);  
 
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Count by Job Type',
-            chartId: 'chart_cbj',
-        });
-        chartData.json = json;
-        chartData.keys.x = 'jobType';
-        chartData.keys.value = ['complete'];
-        this.genCard(cardInfo, chartContainer, chartOption);
+        chartBar.title =  'Av Turnaround by Job Typ';
+        chartBar.chartId = 'c_abj';
+        chartBar.x = 'jobType';
+        chartBar.y = ['avgTime'];
+        chartBar.build(gcBar,json);  
 
-        //Av Turnaround by Job Type
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Av Turnaround by Job Type',
-            chartId: 'chart_abj',
-        });
-
-        chartData.keys.value = ['avgTime'];
-        this.genCard(cardInfo, chartContainer, chartOption);
-
-
-        //Chart of Count by Customer Type
         apiURL = 'api/data/customerTypeList';
+        //Chart of Count by Job Type
         json = await RemoteUtil.getJsonFromAPIServer(apiURL);
-        // console.log(json);
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Count by Customer Type',
-            chartId: 'chart_cbc',
-        });
-        chartData.json = json;
-        chartData.keys.x = 'customerType';
-        chartData.keys.value = ['complete'];
-        this.genCard(cardInfo, chartContainer, chartOption);
+        //customer bar chart
+        chartBar.title =  'Count by Customer Type';
+        chartBar.chartId = 'c_cbc';
+        chartBar.x = 'customerType';
+        chartBar.y = ['complete'];
+        chartBar.build(gcBar,json);  
 
-        //Av Turnaround by Customer Type
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Av Turnaround by Customer Type',
-            chartId: 'chart_abc',
-        });
+        chartBar.title =  'Av Turnaround by Customer Type';
+        chartBar.chartId = 'c_abc';
+        chartBar.x = 'customerType';
+        chartBar.y = ['avgTime'];
+        chartBar.build(gcBar,json);  
 
-        chartData.keys.value = ['avgTime'];
-        this.genCard(cardInfo, chartContainer, chartOption);
+
 
         apiURL = 'api/data/ageList';
         json = await RemoteUtil.getJsonFromAPIServer(apiURL);
-        // console.log(json);
-        chartContainer = document.querySelector('#sec_age_chart .card-container');
-        //Chart of Count of Jobs by Age
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Count by Age',
-            chartId: 'chart_coa',
-        });
-        chartData.json = json;
-        chartData.keys.x = 'age';
-        chartData.keys.value = ['total'];
-        this.genCard(cardInfo, chartContainer, chartOption);
-
+        gcBar = document.querySelector('#sec_age_chart');
+        chartBar.title =  'Count by Age';
+        chartBar.chartId = 'c_coa';
+        chartBar.x = 'age';
+        chartBar.y = ['total'];
+        chartBar.build(gcBar,json); 
 
         apiURL = 'api/data/difficultyList';
         json = await RemoteUtil.getJsonFromAPIServer(apiURL);
-        // console.log(json);
-        chartContainer = document.querySelector('#sec_dif_chart .card-container');
+        gcBar = document.querySelector('#sec_dif_chart');
+        chartBar.title =  'Count by Difficulty';
+        chartBar.chartId = 'c_cod';
+        chartBar.x = 'difficulty';
+        chartBar.y = ['total'];
+        chartBar.build(gcBar,json); 
+        // // console.log(json);
+       
 
-        //Chart of Count of Jobs by Difficulty
-        cardInfo = Object.assign(cardInfo, {
-            title: 'Count by Difficulty',
-            chartId: 'chart_cod',
-        });
-        chartData.json = json;
-        chartData.keys.x = 'difficulty';
-        chartData.keys.value = ['total'];
-        this.genCard(cardInfo, chartContainer, chartOption);
 
-        apiURL = 'api/data/ageJob';
         // dash chart
+        apiURL = 'api/data/ageJob';
         json = await RemoteUtil.getJsonFromAPIServer(apiURL);
-        let dcJobReceived = document.querySelector('#dc_jr');
-        let dcJobCompelete = document.querySelector('#dc_jc');
-        let dcCurrentJob = document.querySelector('#dc_cj');
-        let dc1 = new DashChart({
+
+        let dcJob = document.querySelector('#dc_job');
+        let chartJob = new DashChart({
             'dataType': 'json',
             'title': 'Job Received',
             'fields': [{
@@ -198,44 +146,129 @@ class DashboardController extends BaseController {
                 }
             ]
         });
-        //dc1.loadData(json,'age','received');
-        dc1.build(json);
-        dcJobReceived.appendChild(dc1.component);
-
-
+        chartJob.build(dcJob,json,true);
+        
         // for job complete
-        dc1.title = 'Job Completed';
-        dc1.fields =  [{
-            'header': '7 days',
-            'field': 'jobcompleted7days'
-        },
-        {
-            'header': '30 days',
-            'field': 'jobcompleted30days'
-        }
+        chartJob.title = 'Job Completed';
+        chartJob.fields = [{
+                'header': '7 days',
+                'field': 'jobcompleted7days'
+            },
+            {
+                'header': '30 days',
+                'field': 'jobcompleted30days'
+            }
         ];
+        chartJob.build(dcJob,json);
         
-        
-        dc1.build(json);
-        dcJobCompelete.appendChild(dc1.component);
-        // for current Jobs
-        dc1.title = 'Current Jobs';
-        dc1.fields =  [{
-            'header': 'Backlogs',
-            'field': 'countbacklog'
-        },
-        {
-            'header': 'vs 7 days ago',
-            'field': 'backlogvslast7days'
-        },
-        {
-            'header': 'Backlog days',
-            'field': 'backlogdays'
-        }
-        ];                
-        dc1.build(json);
-        dcCurrentJob.appendChild(dc1.component);
 
+        // for current Jobs
+        chartJob.title = 'Current Jobs';
+        chartJob.fields = [{
+                'header': 'Backlogs',
+                'field': 'countbacklog'
+            },
+            {
+                'header': 'vs 7 days ago',
+                'field': 'backlogvslast7days'
+            },
+            {
+                'header': 'Backlog days',
+                'field': 'backlogdays'
+            }
+        ];
+        chartJob.build(dcJob,json);
+        
+
+        //action chart
+        let dcAction = document.querySelector('#dc_action');
+        apiURL = 'api/data/avTATByAction';
+        // dash chart
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+        let chartAction = new DashChart({
+            'dataType': 'json',
+            'title': 'Job Received',
+            'space': true,
+            'fields': [{
+                    'header': 'Assess Product',
+                    'field': 'assessProduct'
+                },
+                {
+                    'header': 'Parts /Claim',
+                    'field': 'partsClaim'
+                },
+                {
+                    'header': 'Awaiting Parts',
+                    'field': 'awaitingParts'
+                },
+                {
+                    'header': 'Complete Repair',
+                    'field': 'completeRepair'
+                },
+                {
+                    'header': 'Delivery Product',
+                    'field': 'deliveryProduct'
+                },
+                {
+                    'header': 'Total',
+                    'field': 'total'
+                }
+            ]
+        });
+        chartAction.build(dcAction,json);
+        
+
+        //chart customer 
+        apiURL = 'api/data/customerCount';
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+
+        let dcCustomer = document.querySelector('#dc_customer');
+        let chartCustomer = new DashChart({
+            'dataType': 'json',
+            'title': 'New Customers - Direct',
+            'fields': [{
+                    'header': '7 days',
+                    'field': 'newdirect7days'
+                },
+                {
+                    'header': '30 days',
+                    'field': 'newdirect30days'
+                }
+            ]
+        });
+        chartCustomer.build(dcCustomer,json,true);
+        dcCustomer.appendChild(chartCustomer.component);
+
+        // for new retailer customer
+        chartCustomer.title = 'New Customer - Retailer';
+        chartCustomer.fields = [{
+                'header': '7 days',
+                'field': 'newretailer7days'
+            },
+            {
+                'header': '30 days',
+                'field': 'newretailer30days'
+            }
+        ];
+        chartCustomer.build(dcCustomer,json);
+        //dcCustomer.appendChild(chartCustomer.component);
+
+        // for return customer
+        chartCustomer.title = 'Return Customer - 30 days';
+        chartCustomer.fields = [{
+                'header': 'Direct',
+                'field': 'returndirect30days'
+            },
+            {
+                'header': 'Retailer',
+                'field': 'returnretailer30days'
+            }
+        ];
+        chartCustomer.build(dcCustomer,json);
+        //dcCustomer.appendChild(chartCustomer.component);
+
+        
+         
     }
 
 
