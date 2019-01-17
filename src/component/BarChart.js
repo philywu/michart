@@ -1,5 +1,9 @@
 import {GraphChart} from './GraphChart.js';
 import * as c3 from 'c3';
+const DATA_TYPE = {
+    'JSON':'JSON',
+    'COLUMN':'COLUMN'
+};
 const CHART_OPTION = {
     data :{
         type: 'bar',       
@@ -23,8 +27,13 @@ const CHART_OPTION = {
     }
 };
 class BarChart  extends GraphChart{
+
+    static get DATA_TYPE() {
+        return DATA_TYPE;
+    }
     constructor(args){
         super(args);
+        this.dataType = args.dataType;
         this.title = args.title;
         this.chartId = args.chartId;
         this.chartOption = Object.assign(CHART_OPTION); 
@@ -34,8 +43,20 @@ class BarChart  extends GraphChart{
        
     }
     loadJson(json){
-       
+        if (this.dataType === DATA_TYPE.JSON){
         this.chartOption.data.json = json;
+        }
+        if (this.dataType === DATA_TYPE.COLUMN){
+            let keys = Object.keys(json);
+            let values = Object.values(json);
+            let x = ['x', ...keys];
+            let column = ['job count', ...values];
+            
+            this.chartOption.data.x = 'x';
+            this.chartOption.data.columns = [x,column];
+            
+        }
+
     }
     build(container,json,isIntial) {
         if (isIntial){

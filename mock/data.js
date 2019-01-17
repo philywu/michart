@@ -83,6 +83,22 @@ module.exports = {
         },
 
     ],
+    "countByBrand":{
+        "Miwaukee":50,
+        "AGE":22,
+        "Makita":15,
+        "Dewalt":12,
+        "Paslode":12,
+        "Other":16
+    },
+    "avTATByBrand":{
+        "Miwaukee":5.4,
+        "AGE":4.2,
+        "Makita":4.9,
+        "Dewalt":6.1,
+        "Paslode":5.2,
+        "Other":6.5
+    },
     "ageJob":{
         "jobreceived7days":56,
         "jobcompleted7days":2,

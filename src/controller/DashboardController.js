@@ -49,84 +49,106 @@ class DashboardController extends BaseController {
         super.init(app);
         this.registerEvent();
 
-        //Chart of Count By Brand
-        let apiURL = 'api/data/brandList';
-        let json = await RemoteUtil.getJsonFromAPIServer(apiURL);
-        // console.log(json);
+    //     //Chart of Count By Brand
+    //     let apiURL = 'api/data/brandList';
+    //     let json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+    //     // console.log(json);
        
 
-        let gcBar = document.querySelector('#gc_bar');
-        let chartBar = new BarChart({
-            'dataType': 'json',
-            'title': 'Count By Brand',
-            'chartId':'c_cbb',
-            'x':'brand',
-            'y':['complete']
-        });
+    //     let gcBar = document.querySelector('#gc_bar');
+    //     let chartBar = new BarChart({
+    //         'dataType': 'json',
+    //         'title': 'Count By Brand',
+    //         'chartId':'c_cbb',
+    //         'x':'brand',
+    //         'y':['complete']
+    //     });
        
-        chartBar.build(gcBar,json,true);      
+    //     chartBar.build(gcBar,json,true);      
 
         
-        chartBar.title =  'Av Turnaround by Brand';
-        chartBar.chartId = 'c_abb';
-        chartBar.y = ['avgTime'];
-        chartBar.build(gcBar,json);     
+    //     chartBar.title =  'Av Turnaround by Brand';
+    //     chartBar.chartId = 'c_abb';
+    //     chartBar.y = ['avgTime'];
+    //     chartBar.build(gcBar,json);     
 
-        apiURL = 'api/data/jobTypeList';
-        //Chart of Count by Job Type
-        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+    //     apiURL = 'api/data/jobTypeList';
+    //     //Chart of Count by Job Type
+    //     json = await RemoteUtil.getJsonFromAPIServer(apiURL);
       
-      //job type chart    
-        chartBar.title =  'Count by Job Type';
-        chartBar.chartId = 'c_cbj';
-        chartBar.x = 'jobType';
-        chartBar.y = ['complete'];
-        chartBar.build(gcBar,json);  
+    //   //job type chart    
+    //     chartBar.title =  'Count by Job Type';
+    //     chartBar.chartId = 'c_cbj';
+    //     chartBar.x = 'jobType';
+    //     chartBar.y = ['complete'];
+    //     chartBar.build(gcBar,json);  
 
-        chartBar.title =  'Av Turnaround by Job Typ';
-        chartBar.chartId = 'c_abj';
-        chartBar.x = 'jobType';
-        chartBar.y = ['avgTime'];
-        chartBar.build(gcBar,json);  
+    //     chartBar.title =  'Av Turnaround by Job Typ';
+    //     chartBar.chartId = 'c_abj';
+    //     chartBar.x = 'jobType';
+    //     chartBar.y = ['avgTime'];
+    //     chartBar.build(gcBar,json);  
 
-        apiURL = 'api/data/customerTypeList';
-        //Chart of Count by Job Type
-        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
-        //customer bar chart
-        chartBar.title =  'Count by Customer Type';
-        chartBar.chartId = 'c_cbc';
-        chartBar.x = 'customerType';
-        chartBar.y = ['complete'];
-        chartBar.build(gcBar,json);  
+    //     apiURL = 'api/data/customerTypeList';
+    //     //Chart of Count by Job Type
+    //     json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+    //     //customer bar chart
+    //     chartBar.title =  'Count by Customer Type';
+    //     chartBar.chartId = 'c_cbc';
+    //     chartBar.x = 'customerType';
+    //     chartBar.y = ['complete'];
+    //     chartBar.build(gcBar,json);  
 
-        chartBar.title =  'Av Turnaround by Customer Type';
-        chartBar.chartId = 'c_abc';
-        chartBar.x = 'customerType';
-        chartBar.y = ['avgTime'];
-        chartBar.build(gcBar,json);  
+    //     chartBar.title =  'Av Turnaround by Customer Type';
+    //     chartBar.chartId = 'c_abc';
+    //     chartBar.x = 'customerType';
+    //     chartBar.y = ['avgTime'];
+    //     chartBar.build(gcBar,json);  
 
 
 
-        apiURL = 'api/data/ageList';
-        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
-        gcBar = document.querySelector('#sec_age_chart');
-        chartBar.title =  'Count by Age';
-        chartBar.chartId = 'c_coa';
-        chartBar.x = 'age';
-        chartBar.y = ['total'];
-        chartBar.build(gcBar,json); 
+    //     apiURL = 'api/data/ageList';
+    //     json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+    //     gcBar = document.querySelector('#sec_age_chart');
+    //     chartBar.title =  'Count by Age';
+    //     chartBar.chartId = 'c_coa';
+    //     chartBar.x = 'age';
+    //     chartBar.y = ['total'];
+    //     chartBar.build(gcBar,json); 
 
-        apiURL = 'api/data/difficultyList';
-        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
-        gcBar = document.querySelector('#sec_dif_chart');
-        chartBar.title =  'Count by Difficulty';
-        chartBar.chartId = 'c_cod';
-        chartBar.x = 'difficulty';
-        chartBar.y = ['total'];
-        chartBar.build(gcBar,json); 
-        // // console.log(json);
-       
+    //     apiURL = 'api/data/difficultyList';
+    //     json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+    //     gcBar = document.querySelector('#sec_dif_chart');
+    //     chartBar.title =  'Count by Difficulty';
+    //     chartBar.chartId = 'c_cod';
+    //     chartBar.x = 'difficulty';
+    //     chartBar.y = ['total'];
+    //     chartBar.build(gcBar,json); 
+    //     // // console.log(json);
+        
+    //Chart of Count By Brand
+    let apiURL = 'api/data/countByBrand';
+    let json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+    // console.log(json);
 
+
+    let gcBar = document.querySelector('#gc_bar');
+    let chartBar = new BarChart({
+        'dataType': BarChart.DATA_TYPE.COLUMN,
+        'title': 'Count By Brand',
+        'chartId':'c_cbb',        
+    });
+    chartBar.build(gcBar,json,true);
+
+
+    apiURL = 'api/data/avTATByBrand';
+    json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+    
+    chartBar.title =  'Av Turnaround by Brand';
+    chartBar.chartId = 'c_abb';
+    
+    chartBar.build(gcBar,json);
+    
 
         // dash chart
         apiURL = 'api/data/ageJob';
