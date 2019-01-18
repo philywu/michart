@@ -4,5 +4,8 @@ class ChartComponent extends HTMLComponent{
     constructor (args){
         super(args);
     }
+    clearContainer(container){
+        container.innerHTML = '';
+    }
 }
 export {ChartComponent};

@@ -1,7 +1,7 @@
 .graph-chart-card {
     width: 20rem;
     height: 15rem;
-    margin: 0 1rem;
+    margin: 0 1rem 1rem 1rem;
     padding: 0 0 2rem 0;
 
     .card-header {
@@ -46,5 +46,29 @@
         display: flex;
         justify-content:space-between;
         flex-wrap:wrap;
+    }
+}
+.table-chart-container{
+    width:20rem;
+    margin:0 1rem 1rem 0;
+    .title {
+        font-weight: bold;        
+    }
+    table {
+        font-size: 0.8rem;
+        th,td {
+            padding:2px;
+            text-align: center;
+            word-break: break-all;
+        }
+        
+    }
+    table.top10table {
+        td:nth-child(1) {
+            width:2rem;            
+        }
+        td:last-child {
+            width:3rem;           
+        }
     }
 }

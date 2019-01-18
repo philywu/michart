@@ -13,6 +13,10 @@ import {
 import {
     BarChart
 } from '../component/BarChart.js';
+import {
+    TopTableChart
+} from '../component/TopTableChart.js';
+
 class DashboardController extends BaseController {
     constructor(args) {
         super(args);
@@ -351,8 +355,62 @@ class DashboardController extends BaseController {
         chartCustomer.build(dcCustomer,json);
         //dcCustomer.appendChild(chartCustomer.component);
 
+
+        apiURL = 'api/data/top10Retailer';
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+
+        let tcTop10= document.querySelector('#tc_top10');
+        let chartTop10 = new TopTableChart({
+            'topN': 10,
+            'title':'Top 10 Retailer 90 Days',
+            'fields':[
+                {
+                    'header': 'Retailer Name',
+                    'field': 'name'
+                },
+                {
+                    'header': 'Jobs',
+                    'field': 'count'
+                }
+            ]        
+        });
+        chartTop10.build(tcTop10,json);
+
+        apiURL = 'api/data/top10Customer';
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+        chartTop10.title = 'Top 10 Customer 90 Days';
+        chartTop10.fields = [
+            {
+                'header': 'Customer Name',
+                'field': 'name'
+            },
+            {
+                'header': 'Jobs',
+                'field': 'count'
+            }
+        ]        ;
         
-         
+        chartTop10.build(tcTop10,json);
+
+        apiURL = 'api/data/top10Product';
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+        chartTop10.title = 'Top 10 Product 90 Days';
+        chartTop10.fields = [
+            {
+                'header': 'Brand',
+                'field': 'brand'
+            },
+            {
+                'header': 'Model',
+                'field': 'model'
+            },
+            {
+                'header': 'Jobs',
+                'field': 'count'
+            }
+        ]        ;
+        
+        chartTop10.build(tcTop10,json);
     }
 
 

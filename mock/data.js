@@ -155,6 +155,107 @@ module.exports = {
         "totalRepair":3.1,
         "totalOverall":4.4,        
     },
+    "top10Retailer":[
+        {
+            "name":"Bunnings Mt. Roskill",
+            "count":25            
+        },
+        {
+            "name":"Mitre 10 Lincon Rd.",
+            "count":19        
+        },
+        {
+            "name":"Bunnings Howick",
+            "count":12            
+        },
+        {
+            "name":"Top Express New Lynn",
+            "count":8          
+        },
+        {
+            "name":"Place Maker Westgate",
+            "count":6            
+        }        
+    ],
+    "top10Customer":[
+        {
+            "name":"Luke Li",
+            "count":22            
+        },
+        {
+            "name":"Mason Zhao",
+            "count":17        
+        },
+        {
+            "name":"Nevin Ma",
+            "count":14            
+        },
+        {
+            "name":"Chrstine Dong",
+            "count":9         
+        },
+        {
+            "name":"Kevin Zhang",
+            "count":7            
+        },
+        {
+            "name":"Gang Wu",
+            "count":3            
+        }          
+    ],
+    "top10Product":[
+        {
+            "brand":"Miwaukee",
+            "model":"M18A22",
+            "count":37            
+        },
+        {
+            "brand":"Miwaukee",
+            "model":"M18C382",
+            "count":25        
+        },
+        {
+            "brand":"Makita",
+            "model":"MAC0023",
+            "count":25           
+        },
+        {
+            "brand":"AEG",
+            "model":"A324M3",
+            "count":18        
+        } ,
+        {
+            "brand":"Miwaukee",
+            "model":"M18C52",
+            "count":15            
+        },
+        {
+            "brand":"Miwaukee",
+            "model":"M18D82",
+            "count":12        
+        },
+        {
+            "brand":"AEG",
+            "model":"A324M4",
+            "count":12       
+        },
+        {
+            "brand":"Makita",
+            "model":"QAC0024",
+            "count":11           
+        },
+       
+        {
+            "brand":"Dewalt",
+            "model":"DD10015",
+            "count":7           
+        },
+        {
+            "brand":"Makita",
+            "model":"M888A64",
+            "count":5        
+        }          
+    ],
     "ageJobs" :[
         {
             "age":"7 days",
