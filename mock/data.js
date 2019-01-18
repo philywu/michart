@@ -99,6 +99,33 @@ module.exports = {
         "Paslode":5.2,
         "Other":6.5
     },
+    "countByJobType":{
+        "Warranty":82,
+        "General":45
+    },
+    "avTATByJobType":{
+        "Warranty":5.8,
+        "General":5.2
+    },
+    "countByCustomerType":{
+        "Retailer":70,
+        "Direct":57
+    },
+    "avTATByCustomerType":{
+        "Retailer":6.1,
+        "Direct":4.8
+    },
+    "jobByAge":{
+        "<3 days":25,
+        "<7 days":76,
+        "<14 days":10,
+        "14 days+":3
+    },
+    "jobByDifficulty":{
+        "Low":37,
+        "Medium":54,
+        "High":23
+    },
     "ageJob":{
         "jobreceived7days":56,
         "jobcompleted7days":2,
@@ -121,8 +148,12 @@ module.exports = {
         "partsClaim":0.2,
         "awaitingParts":1.7,
         "completeRepair":0.8,
-        "deliveryProduct": 1.3,
-        "total":4.4
+        "deliveryProduct": 1.3,    
+    },
+    
+    "avTATByTotal7Days":{
+        "totalRepair":3.1,
+        "totalOverall":4.4,        
     },
     "ageJobs" :[
         {

@@ -140,7 +140,25 @@ class DashboardController extends BaseController {
     });
     chartBar.build(gcBar,json,true);
 
+    // count by job type
+    apiURL = 'api/data/countByJobType';
+    json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+    
+    chartBar.title =  'Count By Job Type';
+    chartBar.chartId = 'c_cbj';
+    
+    chartBar.build(gcBar,json);
 
+    //count by customer type
+    apiURL = 'api/data/countByCustomerType';
+    json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+    
+    chartBar.title =  'Count By Customer Type';
+    chartBar.chartId = 'c_cbc';
+    
+    chartBar.build(gcBar,json);
+
+    // averag TAT by brand
     apiURL = 'api/data/avTATByBrand';
     json = await RemoteUtil.getJsonFromAPIServer(apiURL);
     
@@ -149,6 +167,40 @@ class DashboardController extends BaseController {
     
     chartBar.build(gcBar,json);
     
+     // avery by job type
+     apiURL = 'api/data/avTATByJobType';
+     json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+     
+     chartBar.title =  'Count By Job Type';
+     chartBar.chartId = 'c_abj';
+     
+     chartBar.build(gcBar,json);
+ 
+     //avery by customer type
+     apiURL = 'api/data/avTATByCustomerType';
+     json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+     
+     chartBar.title =  'Count By Customer Type';
+     chartBar.chartId = 'c_abc';
+     
+     chartBar.build(gcBar,json);
+
+     apiURL = 'api/data/jobByAge';
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+        gcBar = document.querySelector('#sec_age_chart');
+        chartBar.title =  'Count by Age';
+        chartBar.chartId = 'c_coa';
+   
+         chartBar.build(gcBar,json); 
+
+        apiURL = 'api/data/jobByDifficulty';
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+        gcBar = document.querySelector('#sec_dif_chart');
+        chartBar.title =  'Count by Difficulty';
+        chartBar.chartId = 'c_cod';        
+        chartBar.build(gcBar,json); 
+    //     // // console.log(json);
+
 
         // dash chart
         apiURL = 'api/data/ageJob';
@@ -209,8 +261,7 @@ class DashboardController extends BaseController {
         json = await RemoteUtil.getJsonFromAPIServer(apiURL);
         let chartAction = new DashChart({
             'dataType': 'json',
-            'title': 'Job Received',
-            'space': true,
+            'title': 'Job Received',            
             'fields': [{
                     'header': 'Assess Product',
                     'field': 'assessProduct'
@@ -230,15 +281,26 @@ class DashboardController extends BaseController {
                 {
                     'header': 'Delivery Product',
                     'field': 'deliveryProduct'
-                },
-                {
-                    'header': 'Total',
-                    'field': 'total'
                 }
             ]
         });
         chartAction.build(dcAction,json);
-        
+
+        apiURL = 'api/data/avTATByTotal7Days';
+        // dash chart
+        json = await RemoteUtil.getJsonFromAPIServer(apiURL);
+        chartAction.title = 'Total';
+        chartAction.fields = [{
+                'header': 'Total Repair',
+                'field': 'totalRepair'
+            },
+            {
+                'header': 'Total Overall',
+                'field': 'totalOverall'
+            }
+        ];
+        chartAction.build(dcAction,json);
+
 
         //chart customer 
         apiURL = 'api/data/customerCount';
